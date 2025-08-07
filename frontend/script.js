@@ -29,6 +29,17 @@ function setupEventListeners() {
         if (e.key === 'Enter') sendMessage();
     });
     
+    // New chat button
+    const newChatButton = document.getElementById('newChatButton');
+    if (newChatButton) {
+        newChatButton.addEventListener('click', () => {
+            createNewSession();
+            // Ensure input is enabled and focused after creating new session
+            chatInput.disabled = false;
+            sendButton.disabled = false;
+            chatInput.focus();
+        });
+    }
     
     // Suggested questions
     document.querySelectorAll('.suggested-item').forEach(button => {
@@ -122,10 +133,25 @@ function addMessage(content, type, sources = null, isWelcome = false) {
     let html = `<div class="message-content">${displayContent}</div>`;
     
     if (sources && sources.length > 0) {
+        // Build source links - each as a separate element
+        const sourceLinks = sources.map(source => {
+            // Handle both old format (string) and new format (object with text and link)
+            if (typeof source === 'string') {
+                return `<span class="source-item">${source}</span>`;
+            } else if (source.text) {
+                if (source.link) {
+                    // Create clickable link that opens in new tab
+                    return `<a href="${source.link}" target="_blank" rel="noopener noreferrer" title="Click to open lesson">${source.text}</a>`;
+                }
+                return `<span class="source-item">${source.text}</span>`;
+            }
+            return '';
+        }).filter(s => s).join('');
+        
         html += `
             <details class="sources-collapsible">
                 <summary class="sources-header">Sources</summary>
-                <div class="sources-content">${sources.join(', ')}</div>
+                <div class="sources-content">${sourceLinks}</div>
             </details>
         `;
     }
