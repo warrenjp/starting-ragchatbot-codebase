@@ -241,8 +241,43 @@ header h1 {
 }
 
 .sources-content {
-    padding: 0 0.5rem 0.25rem 1.5rem;
+    padding: 0.75rem 1rem;
     color: var(--text-secondary);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.sources-content a {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(37, 99, 235, 0.1);
+    color: #60a5fa;
+    border: 1px solid rgba(37, 99, 235, 0.3);
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.sources-content a:hover {
+    background: rgba(37, 99, 235, 0.2);
+    color: #93c5fd;
+    border-color: rgba(37, 99, 235, 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+}
+
+/* Non-clickable source items */
+.sources-content .source-item {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(100, 116, 139, 0.1);
+    color: var(--text-secondary);
+    border: 1px solid rgba(100, 116, 139, 0.2);
+    border-radius: 6px;
+    font-size: 0.875rem;
 }
 
 /* Markdown formatting styles */
@@ -324,6 +359,19 @@ header h1 {
     border: none;
     border-top: 1px solid var(--border-color);
     margin: 1rem 0;
+}
+
+/* Links in message content */
+.message-content a {
+    color: #60a5fa;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(96, 165, 250, 0.3);
+    transition: all 0.2s ease;
+}
+
+.message-content a:hover {
+    color: #93c5fd;
+    border-bottom-color: rgba(147, 197, 253, 0.5);
 }
 
 /* Chat Input Container */
@@ -444,6 +492,33 @@ header h1 {
     border: 1px solid rgba(34, 197, 94, 0.2);
     margin: 0.5rem 0;
 }
+
+/* New Chat Button */
+.new-chat-button {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem 0;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    transition: color 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.new-chat-button:hover {
+    color: var(--primary-color);
+}
+
+.new-chat-button:focus {
+    outline: none;
+    color: var(--primary-color);
+}
+
+/* Triangle icon removed - keeping just the + icon */
 
 /* Sidebar Headers */
 .stats-header,
